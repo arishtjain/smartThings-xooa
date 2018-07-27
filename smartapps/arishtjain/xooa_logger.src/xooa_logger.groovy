@@ -10,7 +10,7 @@
  */
 definition(
     name: "xooa_logger",
-    namespace: "xooa",
+    namespace: "arishtjain",
     author: "Arisht Jain",
     description: "Log SmartThings events to Xooa",
     category: "Convenience",
