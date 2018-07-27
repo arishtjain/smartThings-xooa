@@ -9,7 +9,7 @@
  *  Logs to xooa backend instead of Logstash
  */
 definition(
-    name: "Xooa Logger",
+    name: "xooa_logger",
     namespace: "xooa",
     author: "Arisht Jain",
     description: "Log SmartThings events to Xooa",
