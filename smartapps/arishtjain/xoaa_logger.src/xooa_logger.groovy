@@ -3,7 +3,7 @@
  *  https://raw.githubusercontent.com/bkeifer/smartthings/master/Logstash%20Event%20Logger/LogstashEventLogger.groovy
  *
  * Modifications from: Arisht Jain:
- *  https://github.com/xooa/smartThings1
+ *  https://github.com/xooa/smartThings-xooa
  *
  * Changes:
  *  Logs to xooa backend instead of Logstash
@@ -16,7 +16,11 @@ definition(
     category: "Convenience",
     iconUrl: "http://cdn.device-icons.smartthings.com/Home/home1-icn.png",
     iconX2Url: "http://cdn.device-icons.smartthings.com/Home/home1-icn@2x.png",
-    iconX3Url: "http://cdn.device-icons.smartthings.com/Home/home1-icn@3x.png")
+    iconX3Url: "http://cdn.device-icons.smartthings.com/Home/home1-icn@3x.png"
+    ) {
+        appSetting "appId"
+        appSetting "apiToken"
+    }
 
 preferences {
     section("Log these presence sensors:") {
@@ -64,11 +68,6 @@ preferences {
     section("Log these energy meters:") {
         input "energymeters", "capability.energyMeter", multiple: true, required: false
     }
-
-    section ("HTTP Server") {
-        input "httpUrl", "text", title: "App Id"
-        input "bearer", "text", title: "API Token"
-    }
 }
 
 def installed() {
@@ -85,46 +84,6 @@ def updated() {
 }
 
 def initialize() {
-    def settingskey = settings.keySet()
-    for(type in settingskey) {
-        def devicetype = settings.get(type);
-        if(type!="httpUrl" && type!="bearer" && type!="xApiKey") {
-            for(device in devicetype) {
-                log.debug(device.id);
-                def json = "{"
-                json += "\"\$class\":\"org.example.basic.SampleDevice\","
-                json += "\"deviceId\":\"${device.id}\","
-                json += "\"owner\":\"resource:org.example.basic.SampleParticipant#1\","
-                json += "\"name\":\"${device.displayName}\","
-                json += "\"value\":\"\","
-                json += "\"desc\":\"\""
-                json += "}"
-                log.debug("JSON: ${json}")
-
-                def params = [
-                    uri: "http://api-gw-1264758337.ap-south-1.elb.amazonaws.com/api/${httpUrl}/SampleDevice",
-                    headers: [
-                        "Authorization": "Bearer ${bearer}",
-                        "content-type": "application/json"
-                    ],
-                    body: json
-                ]
-                log.debug("Params: ${params}")
-                try {
-                    httpPostJson(params)
-                } catch (groovyx.net.http.HttpResponseException ex) {
-                    if (ex.statusCode != 200) {
-                        log.debug "Unexpected response error: ${ex.statusCode}"
-                        log.debug ex
-                        log.debug ex.response.contentType
-                    }
-                }
-            }
-        }
-    }
-    /*
-
-    */
     doSubscriptions()
 }
 
@@ -149,6 +108,8 @@ def doSubscriptions() {
 }
 
 def genericHandler(evt) {
+    def httpUrl = appSettings.appId
+    def bearer = appSettings.apiToken
 /*
     log.debug("------------------------------")
     log.debug("date: ${evt.date}")
@@ -169,19 +130,29 @@ def genericHandler(evt) {
     log.debug("locationId: ${evt.locationId}")
     log.debug("source: ${evt.source}")
     log.debug("unit: ${evt.unit}")
-*/
 
-    def json = "{"
-    json += "\"\$class\":\"org.example.basic.SampleTransaction\","
-    json += "\"device\":\"resource:org.example.basic.SampleDevice#${evt.deviceId}\","
-    json += "\"newValue\":\"${evt.value}\","
-    json += "\"newDesc\":\"${evt.name}\","
-    json += "\"time\":\"${evt.isoDate}\""
-    json += "}"
-    log.debug("JSON: ${json}")
-
+   */ 
+    def json = "{\"args\":["
+    json += "\"${evt.displayName}\","
+    json += "\"${evt.device}\","
+    json += "\"${evt.isStateChange()}\","
+    json += "\"${evt.id}\","
+    json += "\"${evt.description}\","
+    json += "\"${evt.descriptionText}\","
+    json += "\"${evt.installedSmartAppId}\","
+    json += "\"${evt.isDigital()}\","
+    json += "\"${evt.isPhysical()}\","
+    json += "\"${evt.deviceId}\","
+    json += "\"${evt.location}\","
+    json += "\"${evt.locationId}\","
+    json += "\"${evt.source}\","
+    json += "\"${evt.unit}\","
+    json += "\"${evt.value}\","
+    json += "\"${evt.name}\","
+    json += "\"${evt.isoDate}\""
+    json += "]}"
     def params = [
-        uri: "http://api-gw-1264758337.ap-south-1.elb.amazonaws.com/api/${httpUrl}/SampleTransaction",
+        uri: "http://api-gw-1264758337.ap-south-1.elb.amazonaws.com/api/${httpUrl}/invoke/saveNewEvent",
         headers: [
             "Authorization": "Bearer ${bearer}",
             "content-type": "application/json"
