@@ -6,7 +6,7 @@ The repository in use for this example is <https://github.com/Xooa/smartThings-x
 
 ## Xooa Setup
 1. Fork repository from <https://github.com/Xooa/smartThings-xooa> to your account.
-2. Go to Xooa backend webservice located at `https://d3u0qtw0cf1xi7.cloudfront.net/#`
+2. Go to Xooa backend webservice located at <https://d3u0qtw0cf1xi7.cloudfront.net>
 3. Login to the platform. If you dont have an account, you can click on **Sign Up** to create a new account. Once logged in, you will be taken to the main Xooa dashboard.
 4. From the main dashboard, click on **Deploy New** on top left corner to start the deployment process.
 5. The first step is to connect your new Xooa login to your Github account. In the main dashboard you should see the **Connect to Git** option. Click it and in the new browser window that opens up, allow Xooa to access your github account. Select the Github account you hold in which you have forked smartThings-xooa.
@@ -50,7 +50,8 @@ Alternative to steps 3-7, to setup via Github integration,
 11. Click on **Update from Repo**.
 12. Click on **smartThings-xooa (master)**.
 13. Select **xooa-logger.groovy** from **New(only in GitHub)** column.
-14. Click on **Execute Update**.
+14. Check **Publish**.
+15. Click on **Execute Update**.
 
 ### SmartApp Configuration
 1. Click on the smartApp you just deployed.
