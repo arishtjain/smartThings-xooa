@@ -55,8 +55,8 @@ Alternative to steps 3-7, to setup via Github integration,
 
 ### SmartApp Configuration
 1. Click on the smartApp you just deployed.
-1. Click on App Settings.
-2. Click on Settings option.
+1. Click on **App Settings**.
+2. Click on **Settings** option.
 3. Enter app Id provided in dashboard of Xooa under `Basic Information` tab.
 4. Enter the API Token provided in Xooa dashboard under `Identities` tab.
 5. Click on **Update**.
@@ -73,14 +73,14 @@ There are 2 apps available for smartThings in google play store . We recommend t
 2. Tap on the SmartApps tab on top.
 3. Tap on **Add a SmartApp**.
 4. Scroll down to end and tap on **My Apps**.
-5. You should find `Xooa Logger` here. Tap it and proceed to setup.
+5. You should find `Blockchain Event Logger` here. Tap it and proceed to setup.
 6. Select which devices' data you want to log into the Xooa Blockchain.
 
 ### SmartThings new app
 1. Tap on `automations` in lower bar.
 2. Tap on `Add`.
 3. If prompted, select The location you want to add the app to.
-4. You should find `Xooa logger` at the very end of the page. It may take few seconds to show up. Tap it and continue to setup.
+4. You should find `Blockchain Event Logger` at the very end of the page. It may take few seconds to show up. Tap it and continue to setup.
 5. Select which devices' data you want to log into the Xooa Blockchain.
 ___
 

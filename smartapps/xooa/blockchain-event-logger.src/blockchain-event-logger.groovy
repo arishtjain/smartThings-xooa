@@ -1,5 +1,5 @@
  /**
- *  Event Logger
+ *  Blockchain Event Logger
  *
  *  Copyright 2018 Xooa
  *
