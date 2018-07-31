@@ -25,7 +25,7 @@ ___
 1. Create a developer account or login with your existing account at <https://graph.api.smartthings.com>.
 2. Go to **My SmartApps** tab from top menu, then `New SmartApp`.
 3. Go to **From code** option. Now, let's get code to paste in this section.
-4. Click on `xooa-logger.groovy` file present in **smartThings-xooa** repository.
+4. Click on `blockchain-event-logger.groovy` file present in **smartThings-xooa** repository.
 5. Click on **Raw**.
 6. Copy all the code.
 7. Paste it in the **From Code** section in your develepor portal of smartThings.
@@ -49,7 +49,7 @@ Alternative to steps 3-7, to setup via Github integration,
 10. Click on **Save**.
 11. Click on **Update from Repo**.
 12. Click on **smartThings-xooa (master)**.
-13. Select **xooa-logger.groovy** from **New(only in GitHub)** column.
+13. Select **blockchain-event-logger.groovy** from **New(only in GitHub)** column.
 14. Check **Publish**.
 15. Click on **Execute Update**.
 
